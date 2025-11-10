@@ -1,11 +1,11 @@
-# Professional Auto Chart
+#  Auto Chart
 
-A clean, minimal, real-time Auto Chart with a professional black and white design. Type your diagram description and see instant results.
+A clean, minimal, real-time Auto Chart with a  black and white design. Type your diagram description and see instant results.
 
 ## Features
 
 - **Real-time Preview**: Diagrams update instantly as you type
-- **Clean Professional Design**: Black and white color scheme
+- **Clean  Design**: Black and white color scheme
 - **Simple Syntax**: Use arrows `->` to connect components
 - **Auto-scaling**: Automatically adjusts sizing for large diagrams
 - **Clean Layout**: Non-overlapping elements with proper spacing
@@ -105,7 +105,7 @@ Monitoring Service -> Alert System
 ## Design Philosophy
 
 - **Minimal**: No unnecessary features or options
-- **Professional**: Clean black and white design
+- ****: Clean black and white design
 - **Efficient**: Auto-scaling for diagrams of any size
 - **Instant**: Real-time updates without button clicks
 - **Clear**: Non-overlapping elements with proper spacing
