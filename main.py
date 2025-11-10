@@ -4,7 +4,7 @@ import re
 from datetime import datetime
 
 st.set_page_config(
-    page_title="Diagram Generator",
+    page_title="Auto Chart",
     page_icon="📊",
     layout="wide",
     initial_sidebar_state="collapsed"
@@ -50,7 +50,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="main-header"><h1>📊 Diagram Generator</h1></div>', unsafe_allow_html=True)
+st.markdown('<div class="main-header"><h1>📊 Auto Chart</h1></div>', unsafe_allow_html=True)
 
 def parse_diagram(text):
     lines = [line.strip() for line in text.split('\n') if line.strip()]

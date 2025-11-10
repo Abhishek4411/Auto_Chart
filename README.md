@@ -1,6 +1,6 @@
-# Professional Diagram Generator
+# Professional Auto Chart
 
-A clean, minimal, real-time diagram generator with a professional black and white design. Type your diagram description and see instant results.
+A clean, minimal, real-time Auto Chart with a professional black and white design. Type your diagram description and see instant results.
 
 ## Features
 
