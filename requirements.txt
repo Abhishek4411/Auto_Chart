@@ -1,7 +1,2 @@
-streamlit
-graphviz
-Pillow
-requests
-imageio
-imageio-ffmpeg
-numpy
+streamlit==1.31.0
+graphviz==0.20.1

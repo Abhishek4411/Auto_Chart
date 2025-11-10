@@ -1,132 +1,148 @@
-# AI Auto Diagram Workspace 🎨
+# Professional Diagram Generator
 
-Turn plain text into beautiful, exportable diagrams (PNG/SVG/PDF/GIF) using Streamlit + Graphviz, with optional local LLM parsing via Ollama.
-
-> **UI note:** The app is designed for **light mode** and looks best there (dark mode is supported but not optimized).
+A clean, minimal, real-time diagram generator with a professional black and white design. Type your diagram description and see instant results.
 
 ## Features
-- Parse free‑form text into **architecture**, **flowchart**, **sequence**, and more
-- Multiple layout engines (`dot`, `neato`, `fdp`, etc.), themes, and auto‑clustering
-- Export to **PNG / SVG / PDF / DOT**, plus **animated GIFs**
-- Optional local LLM (Ollama) for smarter parsing with small models
 
-## Requirements
-- Python 3.9+
-- System **Graphviz** (binaries on PATH)
-- Optional (recommended): **Ollama** running locally for LLM parsing
+- **Real-time Preview**: Diagrams update instantly as you type
+- **Clean Professional Design**: Black and white color scheme
+- **Simple Syntax**: Use arrows `->` to connect components
+- **Auto-scaling**: Automatically adjusts sizing for large diagrams
+- **Clean Layout**: Non-overlapping elements with proper spacing
+- **30/70 Split**: Efficient space utilization with input panel at 30% and preview at 70%
+- **Multiple Exports**: Download as PNG, SVG, or DOT format
+- **Two Layouts**: Top-to-Bottom or Left-to-Right direction
 
-Python packages:
-```txt
-streamlit
-graphviz
-Pillow
-requests
-imageio
-imageio-ffmpeg
-numpy
-```
+## Installation
 
-## Quick Start
+### Prerequisites
+
+1. **Python 3.8+**
+2. **Graphviz** (system package)
+
+#### Install Graphviz
+
+**Windows:**
 ```bash
-# 1) Create a virtual env (recommended)
-python -m venv .venv && . .venv/Scripts/activate  # Windows
-# or
-python3 -m venv .venv && source .venv/bin/activate  # macOS/Linux
-
-# 2) Install dependencies
-pip install -r requirements.txt  # or pip install streamlit graphviz Pillow requests imageio imageio-ffmpeg numpy
-
-# 3) Ensure Graphviz is installed (see below) and on your PATH
-
-# 4) (Optional) Start Ollama in background for LLM parsing
-#    Install: https://ollama.com/download
-#    Start service:
-ollama serve
-#    Pull a small model (any one of these is fine):
-ollama pull gemma2:2b  # or: phi3:mini, llama3.2:1b, tinyllama, qwen2.5:0.5b
-
-# 5) Run the app
-streamlit run app.py
+choco install graphviz
 ```
+Or download from: https://graphviz.org/download/
 
-## Install Graphviz
-The Python `graphviz` package **does not** include the Graphviz system binaries. Install Graphviz and ensure its `bin` directory is on **PATH**.
-
-- **Windows (MSI):** https://graphviz.org/download/
-  - Typical path: `C:\Program Files\Graphviz\bin`
-  - Add to PATH:
-    1. Windows Search → *Environment Variables*
-    2. *System variables* → select **Path** → **Edit**
-    3. **New** → `C:\Program Files\Graphviz\bin` → **OK**
-  - You can also set it at runtime in the app (already included):
-    ```python
-    import os
-    os.environ["PATH"] += os.pathsep + r"C:\Program Files\Graphviz\bin"
-    ```
-
-- **macOS:**
-  ```bash
-  brew install graphviz
-  # PATH is managed by Homebrew; reopen your terminal if needed
-  ```
-
-- **Ubuntu/Debian:**
-  ```bash
-  sudo apt-get update && sudo apt-get install -y graphviz
-  ```
-
-- **Fedora/RHEL:**
-  ```bash
-  sudo dnf install -y graphviz
-  ```
-
-**Verify install**
+**macOS:**
 ```bash
-dot -V
-# Graphviz version ... (any recent version works)
+brew install graphviz
 ```
 
-## Optional: Ollama (Local LLM)
-The app will try to connect to `http://localhost:11434`. If found, it uses a small local model for smarter parsing. If not, it falls back to a fast, rule‑based parser.
-
-- Install: https://ollama.com/download
-- Start: `ollama serve`
-- Pull a model (choose one):
-  ```bash
-  ollama pull gemma2:2b
-  # or: ollama pull phi3:mini
-  # or: ollama pull llama3.2:1b
-  # or: ollama pull tinyllama
-  # or: ollama pull qwen2.5:0.5b
-  ```
-
-## Project Structure
-```
-app.py               # Streamlit app (rename your file to app.py if needed)
-README.md            # This file
-requirements.txt     # (optional) list of Python deps
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt-get install graphviz
 ```
 
-## Usage Tips
-- Use simple arrow or natural phrases, e.g.:
-  ```
-  User -> API Gateway: HTTP
-  API Gateway -> Auth Service: Validate
-  Order Service -> Database: Save Order
-  ```
-- Pick a diagram type in the sidebar and tune **Layout** / **Visual** options
-- Use **Export** panel to download PNG/SVG/PDF/DOT or an animated GIF
+### Install Python Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+
+### Run the Application
+
+```bash
+streamlit run main.py
+```
+
+The app will open in your browser at `http://localhost:8501`
+
+### Diagram Syntax
+
+Use simple arrow notation to connect components:
+
+```
+Component A -> Component B
+Component B -> Component C : Label
+Component C -> Component D
+```
+
+### Examples
+
+**Simple Flow:**
+```
+User -> Server
+Server -> Database : Query
+Database -> Server : Results
+Server -> User : Response
+```
+
+**Complex Architecture:**
+```
+Client -> Load Balancer : HTTPS Request
+Load Balancer -> Web Server 1
+Load Balancer -> Web Server 2
+Web Server 1 -> Application Server : API Call
+Web Server 2 -> Application Server : API Call
+Application Server -> Authentication Service : Verify Token
+Authentication Service -> User Database : Query User
+User Database -> Authentication Service : User Data
+Authentication Service -> Application Server : Auth Result
+Application Server -> Business Logic Layer : Process Request
+Business Logic Layer -> Data Access Layer
+Data Access Layer -> Primary Database : Read/Write
+Data Access Layer -> Cache Server : Check Cache
+Cache Server -> Data Access Layer : Cache Hit/Miss
+Primary Database -> Replication Server : Sync Data
+Replication Server -> Backup Database
+Business Logic Layer -> Message Queue : Async Task
+Message Queue -> Worker Service 1
+Message Queue -> Worker Service 2
+Worker Service 1 -> Notification Service
+Worker Service 2 -> Email Service
+Application Server -> Logging Service : Log Events
+Application Server -> Monitoring Service : Metrics
+Monitoring Service -> Alert System
+```
+
+## Design Philosophy
+
+- **Minimal**: No unnecessary features or options
+- **Professional**: Clean black and white design
+- **Efficient**: Auto-scaling for diagrams of any size
+- **Instant**: Real-time updates without button clicks
+- **Clear**: Non-overlapping elements with proper spacing
+
+## Auto-scaling
+
+The application automatically adjusts:
+- Font sizes based on node count
+- Spacing between nodes and ranks
+- Overall layout to prevent overlapping
+- Keeps diagrams readable even with 20+ nodes
+
+## Export Options
+
+- **PNG**: High-quality raster image for presentations
+- **SVG**: Scalable vector graphics for editing
+- **DOT**: Raw Graphviz format for advanced customization
+
+## Tips
+
+- Keep component names concise for better layout
+- Use labels (`:`) to describe connections
+- The diagram updates automatically as you type
+- Switch between TB and LR layouts for different perspectives
+- Large diagrams automatically scale down for readability
 
 ## Troubleshooting
-- **Graphviz not found / `dot` not found**
-  - Install system Graphviz and ensure its `bin` is on PATH (see above).
-- **Blank/partial diagram**
-  - Try a different *Layout Engine* (e.g. `dot`) or reduce spacing.
-- **Ollama not detected**
-  - Start `ollama serve` and pull at least one small model.
-- **GIF export errors**
-  - Ensure `imageio-ffmpeg` is installed (`pip install imageio-ffmpeg`).
 
----
+**Graphviz not found error:**
+- Ensure Graphviz is installed on your system
+- Windows: Add Graphviz bin folder to PATH
+- Restart terminal/IDE after installation
 
-**Design note:** Optimized for **light mode** (preferable). Dark mode is supported but may appear less crisp.
+**Diagram not updating:**
+- Check that your syntax uses `->` for connections
+- Each connection should be on a new line
+
+## License
+
+MIT License - feel free to use and modify.
